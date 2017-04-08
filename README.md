@@ -3,7 +3,7 @@
 
 [![NPM](https://nodei.co/npm/catw.png?downloads=true)](https://www.npmjs.com/package/catw)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-catw/build/screenCapture.buildNpmdoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-catw%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-catw/build/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-catw/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-catw%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-catw/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-catw/build/screenCapture.npmPackageListing.svg)
 
