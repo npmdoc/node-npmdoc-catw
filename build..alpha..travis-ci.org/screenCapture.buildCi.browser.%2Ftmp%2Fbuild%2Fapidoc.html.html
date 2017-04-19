@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/substack/catw"
-
-    >catw (v1.0.1)</a>
+    <a href="https://github.com/substack/catw">catw (v1.0.1)</a>
 </h1>
 <h4>concatenate file globs, watching for changes</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.catw">module catw</a><ol>
 
@@ -89,7 +82,7 @@
     if (!Array.isArray(patterns)) {
         patterns = [ patterns ];
     }
-    if (typeof opts === &#x27;function&#x27; || !opts) {
+    if (typeof opts === 'function' || !opts) {
         cb = opts;
         opts = {}
     }
@@ -105,7 +98,7 @@
     var intervalHack;
     cat.close = (function () {
         var watchers = [], closed = false;
-        cat.on(&#x27;watcher&#x27;, function (w) {
+        cat.on('watcher', function (w) {
             if (closed) w.close();
             watchers.push(w);
         });
@@ -121,15 +114,15 @@
     var initStream = concat(function () {
         if (opts.watch !== false) {
             var w = watcher(function () {
-                cat.emit(&#x27;stream&#x27;, concat());
+                cat.emit('stream', concat());
             });
-            cat.emit(&#x27;watcher&#x27;, w);
+            cat.emit('watcher', w);
         }
     });
 
-    if (cb) cat.on(&#x27;stream&#x27;, cb);
+    if (cb) cat.on('stream', cb);
     process.nextTick(function () {
-        cat.emit(&#x27;stream&#x27;, initStream);
+        cat.emit('stream', initStream);
     });
     return cat;
 
@@ -137,9 +130,9 @@
         var stream = through();
 
         (function nextPattern (index) {
-            if (index &#x3e;= patterns.length) {
+            if (index &gt;= patterns.length) {
                 stream.queue(null);
-                return cb &#x26;&#x26; cb();
+                return cb &amp;&amp; cb();
             }
 
             glob(patterns[index], function (err, files) {
@@ -155,11 +148,11 @@
                     var rs = fs.createReadStream(file)
                         .pipe(transform(file))
                     ;
-                    rs.on(&#x27;error&#x27;, function (err) { stream.emit(&#x27;error&#x27;, err) });
+                    rs.on('error', function (err) { stream.emit('error', err) });
 
                     rs.pipe(stream, { end: false });
-                    rs.on(&#x27;data&#x27;, function () {});
-                    rs.on(&#x27;end&#x27;, nextFile);
+                    rs.on('data', function () {});
+                    rs.on('end', nextFile);
                 })();
             });
         })(0);
@@ -169,9 +162,9 @@
 
     function watcher (cb) {
         var w = globwatcher(patterns);
-        w.on(&#x27;added&#x27;, cb);
-        w.on(&#x27;deleted&#x27;, cb);
-        w.on(&#x27;changed&#x27;, cb);
+        w.on('added', cb);
+        w.on('deleted', cb);
+        w.on('changed', cb);
         return w;
     }
 }</pre></li>
@@ -187,3 +180,4 @@
     ]
 </div>
 </div>
+</body></html>

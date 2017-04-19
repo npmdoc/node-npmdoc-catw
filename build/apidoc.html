@@ -61,12 +61,123 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.catw">module catw</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catw.catw">
+            function <span class="apidocSignatureSpan"></span>catw
+            <span class="apidocSignatureSpan">(patterns, opts, cb)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.catw" id="apidoc.module.catw">module catw</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.catw.catw" id="apidoc.element.catw.catw">
+        function <span class="apidocSignatureSpan"></span>catw
+        <span class="apidocSignatureSpan">(patterns, opts, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">catw = function (patterns, opts, cb) {
+    if (!Array.isArray(patterns)) {
+        patterns = [ patterns ];
+    }
+    if (typeof opts === &#x27;function&#x27; || !opts) {
+        cb = opts;
+        opts = {}
+    }
+    if (!opts) opts = {};
+
+    var transform = makeTransform(
+        Array.isArray(opts.transform)
+        ? opts.transform
+        : [ opts.transform ].filter(Boolean)
+    );
+
+    var cat = new EventEmitter;
+    var intervalHack;
+    cat.close = (function () {
+        var watchers = [], closed = false;
+        cat.on(&#x27;watcher&#x27;, function (w) {
+            if (closed) w.close();
+            watchers.push(w);
+        });
+        return function () {
+            closed = true;
+            watchers.forEach(function (w) {
+                w.close();
+                clearInterval(w.fileWatcher.timer);
+            });
+            if (intervalHack) clearInterval(intervalHack);
+        };
+    })();
+    var initStream = concat(function () {
+        if (opts.watch !== false) {
+            var w = watcher(function () {
+                cat.emit(&#x27;stream&#x27;, concat());
+            });
+            cat.emit(&#x27;watcher&#x27;, w);
+        }
+    });
+
+    if (cb) cat.on(&#x27;stream&#x27;, cb);
+    process.nextTick(function () {
+        cat.emit(&#x27;stream&#x27;, initStream);
+    });
+    return cat;
+
+    function concat (cb) {
+        var stream = through();
+
+        (function nextPattern (index) {
+            if (index &#x3e;= patterns.length) {
+                stream.queue(null);
+                return cb &#x26;&#x26; cb();
+            }
+
+            glob(patterns[index], function (err, files) {
+                if (err) files = [];
+                files.sort();
+                if (files.length === 0) {
+                    intervalHack = setInterval(function () {}, 1e8);
+                }
+                (function nextFile () {
+                    if (files.length === 0) return nextPattern(index + 1);
+
+                    var file = files.shift();
+                    var rs = fs.createReadStream(file)
+                        .pipe(transform(file))
+                    ;
+                    rs.on(&#x27;error&#x27;, function (err) { stream.emit(&#x27;error&#x27;, err) });
+
+                    rs.pipe(stream, { end: false });
+                    rs.on(&#x27;data&#x27;, function () {});
+                    rs.on(&#x27;end&#x27;, nextFile);
+                })();
+            });
+        })(0);
+
+        return stream;
+    }
+
+    function watcher (cb) {
+        var w = globwatcher(patterns);
+        w.on(&#x27;added&#x27;, cb);
+        w.on(&#x27;deleted&#x27;, cb);
+        w.on(&#x27;changed&#x27;, cb);
+        return w;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
