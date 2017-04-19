@@ -1,9 +1,14 @@
-# api documentation for  [catw (v1.0.1)](https://github.com/substack/catw)  [![npm package](https://img.shields.io/npm/v/npmdoc-catw.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-catw) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-catw.svg)](https://travis-ci.org/npmdoc/node-npmdoc-catw)
+# npmdoc-catw
+
+#### api documentation for  [catw (v1.0.1)](https://github.com/substack/catw)  [![npm package](https://img.shields.io/npm/v/npmdoc-catw.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-catw) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-catw.svg)](https://travis-ci.org/npmdoc/node-npmdoc-catw)
+
 #### concatenate file globs, watching for changes
 
-[![NPM](https://nodei.co/npm/catw.png?downloads=true)](https://www.npmjs.com/package/catw)
+[![NPM](https://nodei.co/npm/catw.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/catw)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-catw/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-catw%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-catw/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-catw/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-catw/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-catw/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-catw/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-catw/build/screenCapture.npmPackageListing.svg)
 
@@ -18,7 +23,6 @@
 {
     "author": {
         "name": "James Halliday",
-        "email": "mail@substack.net",
         "url": "http://substack.net"
     },
     "bin": {
@@ -68,17 +72,14 @@
     "main": "index.js",
     "maintainers": [
         {
-            "name": "substack",
-            "email": "substack@gmail.com"
+            "name": "substack"
         },
         {
-            "name": "k88hudson",
-            "email": "k88hudson@gmail.com"
+            "name": "k88hudson"
         }
     ],
     "name": "catw",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/substack/catw.git"
@@ -89,16 +90,6 @@
     "version": "1.0.1"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module catw](#apidoc.module.catw)
-
-
-
-# <a name="apidoc.module.catw"></a>[module catw](#apidoc.module.catw)
 
 
 
